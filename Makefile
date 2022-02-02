@@ -1,7 +1,10 @@
-default: controlmap
+default: json
 
 json:
-	cargo run --example json -- .\examples\sample.json
+	cargo run --example controlmap-parser .\examples\controlmap_sample.txt > result.json
 
 controlmap:
-	cargo run -- .\examples\controlmap_sample2.txt
+	cargo run --example controlmap-parser .\examples\controlmap_sample.txt
+
+test:
+	cargo run --example controlmap-parser .\test-files\controlmap_test.txt > result.json

@@ -1,4 +1,15 @@
 {
-  "cSpell.words": ["chumsky", "controlmap", "foldl", "foldr"],
+  "cSpell.words": [
+    "chumsky",
+    "controlmap",
+    "ctrlmap",
+    "foldl",
+    "foldr",
+    "Gameplay",
+    "indexmap",
+    "Licence",
+    "Lockpicking",
+    "rustup"
+  ],
   "files.insertFinalNewline": false
 }

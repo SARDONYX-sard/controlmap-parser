@@ -1,48 +1,85 @@
 use anyhow::Context;
+use indexmap::IndexMap;
 use pest::{error::Error, iterators::Pairs, Parser};
 
 #[derive(Parser, Debug)]
 #[grammar = "pest/controlmap.pest"]
 pub struct ControlMapParser;
 
+/// Parses a given controlmap.txt file at the given file path.
+///
+/// # Examples
+///
+/// ```
+/// use controlmap_parser::parse;
+///
+/// let unparsed_file = std::fs::read_to_string("test-files/controlmap_test.txt").expect("Failed to read file.");
+/// let parsed = parse(&unparsed_file).expect("Failed to parse file.");
+/// let result = std::fs::read_to_string("test-files/expected.json")
+///     .expect("Failed to read expected file.");
+/// assert_eq!(parsed, result);
+///```
 pub fn parse(input: &str) -> Result<String, Error<ControlMapParser>> {
-    // let successful_parse = ControlMapParser::parse(Rule::field, "Forward	0xff	0xff	0xff	0	0	0");
     let successful_parse = ControlMapParser::parse(Rule::rows, &input)
         .with_context(|| format!("unsuccessful parse"))
         .unwrap();
 
-    fn parse_control_map(pairs: Pairs<Rule>) -> String {
-        // println!("{}", &successful_parse);
-        let mut string = String::new();
+    Ok(parse_ctrlmap(successful_parse))
+}
 
-        let mut index = 0;
-        pairs.for_each(|row| match row.as_rule() {
-            Rule::event_name => {
-                format!("----------------------------------------------------");
-                string += &format!("event_name:    {}\n", &row.as_str())[..];
-            }
-            Rule::keycode => {
-                string += &format!("   keycode:    {}\n", &row.as_str())[..];
-            }
-            Rule::blank_line => {
-                string += &format!("   blank:    {}\n", &row.as_str())[..];
-                index += 1;
-                string += &format!("INDEX: {} \n", &index)[..];
-            }
-            Rule::comment => {
-                string += &format!("   comment:    {}\n", &row.as_str())[..];
-            }
-            Rule::EOI => {
-                string += &format!("   EOI:    {}\n", &row.as_str())[..];
-            }
-            _ => {
-                format!("   Error:   {}", &row.as_str());
-                unreachable!()
-            }
-        });
+fn parse_ctrlmap(pairs: Pairs<Rule>) -> String {
+    let ctrlmap_category = vec![
+        "Main Gameplay",
+        "Menu Mode",
+        "Console",
+        "Item Menus",
+        "Inventory",
+        "Debug Text",
+        "Map Menu",
+        "Stats",
+        "Cursor",
+        "Book",
+        "Debug overlay",
+        "Journal",
+        "TFC mode",
+        "Debug Map Menu-like mode (but not the actual map menu)",
+        "Lockpicking",
+        "Favor",
+    ];
 
-        string
-    }
+    let mut event_count = 0;
+    let mut index: usize = 0;
+    let mut event_name = String::new();
+    let mut event = IndexMap::new();
+    let mut events = IndexMap::new();
+    let mut comment = vec![];
+    let mut keycode_list = vec![];
 
-    Ok(parse_control_map(successful_parse))
+    pairs.for_each(|row| match row.as_rule() {
+        Rule::event_name => {
+            if event_count == 0 {
+            } else {
+                event.insert("comment".to_string(), comment.clone());
+                event.insert(event_name.clone(), keycode_list.clone());
+                keycode_list = vec![];
+            }
+
+            event_name = row.as_str().to_string();
+            event_count += 1;
+        }
+        Rule::comment => comment.push(row.as_str()),
+        Rule::keycode => keycode_list.push(row.as_str()),
+        Rule::blank_line => {
+            events.insert(ctrlmap_category[index], event.clone());
+
+            event = IndexMap::new();
+            comment = vec![];
+            index += 1;
+        }
+        Rule::EOI => {
+            format!("END:   {}", &row.as_str());
+        }
+        _ => unreachable!(),
+    });
+    format!("{:?}", events.clone())[..].to_string()
 }

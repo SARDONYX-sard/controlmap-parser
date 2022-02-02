@@ -1,20 +1,20 @@
 new_line = _{ "\n" | "\r\n" }
 WHITESPACE = _{ " "}
-DELIMITER = _{ "\t" }
+DELIMITER = _{ "\t" | ","  }
 
-char = _{ (ASCII_ALPHANUMERIC | "+" | "-" | "," | "/" | WHITESPACE) }
+char = _{ (ASCII_ALPHANUMERIC | "+" | "-" | "/" | WHITESPACE) }
 string = _{ char+ }
 
-event_name = @{ string }
+event_name = @{ (!"//" ~ string) }
 keycode = @{ string }
 comment = @{ (!new_line ~ ANY)* }
 
-comment_row = _{ "//" ~ comment  ~ new_line? }
-row = _{ event_name ~ (DELIMITER ~ keycode ~ DELIMITER?)* ~ new_line? }
-blank_line = @{ new_line }
+comment_row = _{ "//" ~ comment }
+row = _{ event_name ~ (DELIMITER ~ keycode)* ~ (DELIMITER+)?}
+blank_line = @{ (new_line | "\t") + }
 
 rows = _{
     SOI ~
-    ((comment_row | row) | blank_line)* ~
+    ((row| comment_row) ~ new_line? | blank_line)* ~
     EOI
 }
