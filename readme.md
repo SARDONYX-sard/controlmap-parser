@@ -6,7 +6,7 @@ English | [日本語](docs/i18n/jp/readme.md)
 
 ## Abstract
 
-This is the controlmap.txt parser.
+This is the controlmap.txt parser for Skyrim.
 
 controlmap.txt => json file
 
@@ -26,13 +26,15 @@ make; # sample controlmap.txt to result.json
 make controlmap; # controlmap.txt to stdout (show display)
 
 # or manual
-cargo run --example controlmap-parser <your controlmap.txt file path>
+cargo run --example controlmap-parser <your controlmap.txt file path>;
 ```
 
 ## Known Issues
 
 - I cannot successfully parse the comments between the event lines in
   controlmap.txt. (They are grouped together as an array).
+
+- json => controlmap.txt not supported.
 
 ## License
 

@@ -9,7 +9,8 @@
     "indexmap",
     "Licence",
     "Lockpicking",
-    "rustup"
+    "rustup",
+    "Skyrim"
   ],
   "files.insertFinalNewline": false
 }

@@ -6,7 +6,7 @@
 
 ## 概要
 
-controlmap.txtをjsonに変換するライブラリです。
+Skyrim用のcontrolmap.txtをjsonに変換するライブラリです。
 
 controlmap.txt => json file
 
@@ -26,12 +26,13 @@ make; # sample controlmap.txt => result.json
 make controlmap; # controlmap.txt => stdout (画面への表示用)
 
 # or manual
-cargo run --example controlmap-parser <your controlmap.txt file path>
+cargo run --example controlmap-parser <your controlmap.txt file path>;
 ```
 
 ## 既知の問題
 
 - controlmap.txtのイベント行の間のコメントをうまく解析できません。(配列としてまとめられてしまいます)
+- json => controlmap.txtの未対応
 
 ## License
 
