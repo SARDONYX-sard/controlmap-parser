@@ -18,7 +18,7 @@ controlmap.txt => json file
 ## はじめに
 
 ```bash
-git clone ;
+git clone https://github.com/SARDONYX-sard/controlmap-parser;
 cd controlmap-parser;
 
 make; # sample controlmap.txt => result.json
