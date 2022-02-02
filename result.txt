@@ -1,0 +1,325 @@
+cargo run -- .\examples\controlmap_sample2.txt
+   comment:    1st field: User event name.  DO NOT ALTER!  This field is used to ID events in the code
+event_name:    Forward
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Back
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Strafe Left
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Strafe Right
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Move
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000b
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Look
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000c
+event_name:    0
+   keycode:    0
+event_name:    0
+event_name:    Left Attack/Block
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0009
+event_name:    0
+   keycode:    0
+event_name:    1
+event_name:    Right Attack/Block
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000a
+event_name:    0
+   keycode:    0
+event_name:    1
+event_name:    Activate
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x1000
+event_name:    0
+   keycode:    0
+event_name:    1
+event_name:    Ready Weapon
+   keycode:    0x13
+event_name:    0xff
+   keycode:    0x4000
+event_name:    0
+   keycode:    0
+event_name:    1
+event_name:    Tween Menu
+   keycode:    0x0f
+event_name:    0xff
+   keycode:    0x2000+0x1000
+event_name:    1
+   keycode:    1
+event_name:    1
+event_name:    Toggle POV
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0080
+event_name:    1
+   keycode:    1
+event_name:    1
+event_name:    Zoom Out
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x220
+event_name:    Zoom In
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x220
+event_name:    Jump
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x8000
+event_name:    1
+   keycode:    1
+event_name:    1
+event_name:    Sprint
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0040
+event_name:    1
+   keycode:    1
+event_name:    1
+event_name:    Shout
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0200+0x8000
+event_name:    1
+   keycode:    1
+event_name:    1
+event_name:    Sneak
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0100
+event_name:    1
+   keycode:    1
+event_name:    1
+   blank:    
+
+INDEX: 1 
+   comment:    Menu Mode
+   comment:    
+   comment:    	B + BACK - Console
+   comment:    
+event_name:    Accept
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x1000
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Cancel
+   keycode:    0x0f,0x1
+event_name:    0xff
+   keycode:    0x2000
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Up
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0001
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Down
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0002
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Left
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0004
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Right
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0008
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Left Stick
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000b
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Console
+   keycode:    0x29
+event_name:    0xff
+   keycode:    0x2000+0x0020
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+   blank:    
+
+INDEX: 2 
+   comment:    Console
+   comment:    
+   comment:    	B + BACK - Console
+   comment:    
+event_name:    PickPrevious
+   keycode:    0xff
+event_name:    0x8
+   keycode:    0x0002
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    PickNext
+   keycode:    0xff
+event_name:    0x9
+   keycode:    0x0001
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    Up
+   keycode:    0xc8
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    Down
+   keycode:    0xd0
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    PageUp
+   keycode:    0xc9
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    PageDown
+   keycode:    0xd1
+event_name:    0xff
+   keycode:    0xff
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    Console
+   keycode:    0x29
+event_name:    0xff
+   keycode:    0x2000+0x0020
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    NextFocus
+   keycode:    0x0f
+event_name:    0xff
+   keycode:    0x0200
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+event_name:    PreviousFocus
+   keycode:    0x2a+0x0f,0x36+0x0f
+event_name:    0xff
+   keycode:    0x0100
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x10
+   blank:    
+
+INDEX: 3 
+   comment:    Debug Map Menu-like mode (but not the actual map menu)
+event_name:    Look
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000c
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Zoom In
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x000a
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+event_name:    Zoom Out
+   keycode:    0xff
+event_name:    0xff
+   keycode:    0x0009
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x8
+   blank:    
+
+INDEX: 4 
+   comment:    Favor
+event_name:    Cancel
+   keycode:    0x0f, 0x1
+event_name:    0xff
+   keycode:    0x2000
+event_name:    0
+   keycode:    0
+event_name:    0
+   keycode:    0x108
+   blank:    
+
+INDEX: 5 
+   EOI:    
+
