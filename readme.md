@@ -1,5 +1,7 @@
 # ControlMap Parser Library
 
+English | [日本語](docs/i18n/jp/readme.md)
+
 ![controlmap sample](./docs/sample-code.png)
 
 ## Abstract
@@ -26,6 +28,11 @@ make controlmap; # controlmap.txt to stdout (show display)
 # or manual
 cargo run --example controlmap-parser <your controlmap.txt file path>
 ```
+
+## Known Issues
+
+- I cannot successfully parse the comments between the event lines in
+  controlmap.txt. (They are grouped together as an array).
 
 ## License
 
