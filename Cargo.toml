@@ -12,7 +12,7 @@ description = """
 Controlmap parser is a minimal parser for controlmap.txt files.
 """
 keywords = ["controlmap", "json", "no-std", "skyirm"]
-categories = ["parser"]
+categories = ["compilers"]
 autobenches = true
 include = ["src/", "LICENSE*", "readme.md"]
 
