@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:
@@ -27,7 +27,6 @@ jobs:
             target: x86_64-apple-darwin
             artifact_name: controlmap-parser
             asset_name: controlmap-parser-x86_64-apple-darwin
-
 
     runs-on: ${{ matrix.os }}
 
@@ -56,3 +55,8 @@ jobs:
           asset_name: ${{ matrix.asset_name }}
           tag: ${{ github.ref }}
           overwrite: true
+
+      - name: Publish crate
+        uses: katyo/publish-crates@v1
+        with:
+          registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
