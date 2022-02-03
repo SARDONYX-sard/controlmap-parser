@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Release binary
+    name: Publish crate
     strategy:
       matrix:
         include:
@@ -16,7 +16,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Publish crate
-        uses: katyo/publish-crates@v1
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - uses: katyo/publish-crates@v1
         with:
           registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
