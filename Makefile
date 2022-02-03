@@ -11,3 +11,7 @@ doc:
 
 test:
 	cargo run --example controlmap-parser .\test-files\controlmap_test.txt > result.json
+
+publish-test:
+	cargo publish --dry-run;
+	cargo package --list;
