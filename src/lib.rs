@@ -15,7 +15,8 @@ mod parse_test {
 
     #[test]
     fn parse_controlmap() {
-        let unparsed_file = std::fs::read_to_string("test-files/controlmap_test.txt").expect("Failed to read file.");
+        let unparsed_file = std::fs::read_to_string("test-files/controlmap_test.txt")
+            .expect("Failed to read file.");
 
         let parsed = parse(&unparsed_file).expect("Failed to parse file.");
 
