@@ -4,6 +4,16 @@
 
 ![controlmap sample](../../sample-code.png)
 
+## 目次
+
+- [ControlMap Parser Library](#controlmap-parser-library)
+  - [目次](#目次)
+  - [概要](#概要)
+  - [要件](#要件)
+  - [はじめに](#はじめに)
+  - [既知の問題](#既知の問題)
+  - [License](#license)
+
 ## 概要
 
 Skyrim用のcontrolmap.txtをjsonに変換するライブラリです。

@@ -4,6 +4,16 @@ English | [日本語](docs/i18n/jp/readme.md)
 
 ![controlmap sample](./docs/sample-code.png)
 
+## Table of Contents
+
+- [ControlMap Parser Library](#controlmap-parser-library)
+  - [Table of Contents](#table-of-contents)
+  - [Abstract](#abstract)
+  - [Requirements](#requirements)
+  - [Getting Started](#getting-started)
+  - [Known Issues](#known-issues)
+  - [License](#license)
+
 ## Abstract
 
 This is the controlmap.txt parser for Skyrim.
