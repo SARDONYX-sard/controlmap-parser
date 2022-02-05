@@ -35,6 +35,7 @@ fn parse_ctrlmap(pairs: Pairs<Rule>) -> String {
         "Item Menus",
         "Inventory",
         "Debug Text",
+        "Favorites menu",
         "Map Menu",
         "Stats",
         "Cursor",
@@ -77,9 +78,10 @@ fn parse_ctrlmap(pairs: Pairs<Rule>) -> String {
             index += 1;
         }
         Rule::EOI => {
+            events.insert(ctrlmap_category[index], event.clone());
             format!("END:   {}", &row.as_str());
         }
         _ => unreachable!(),
     });
-    format!("{:?}", events.clone())[..].to_string()
+    format!("{:?}", events.clone()).to_string()
 }
