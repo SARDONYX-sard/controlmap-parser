@@ -10,11 +10,11 @@ keycode = @{ string }
 comment = @{ (!new_line ~ ANY)* }
 
 comment_row = _{ "//" ~ comment }
-row = _{ event_name ~ (DELIMITER ~ keycode)* ~ (DELIMITER+)?}
-blank_line = @{ (new_line | "\t") + }
+row = _{ event_name ~ (DELIMITER ~ keycode)* ~ DELIMITER* }
+blank_line = @{ (new_line | "\t")+ }
 
 rows = _{
     SOI ~
-    ((row| comment_row) ~ new_line? | blank_line)* ~
+    ((row | comment_row) ~ new_line? | blank_line)* ~
     EOI
 }
