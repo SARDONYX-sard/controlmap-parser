@@ -56,12 +56,16 @@ fn parse_ctrlmap(pairs: Pairs<Rule>) -> String {
     let mut comment = vec![];
     let mut keycode_list = vec![];
 
+    // println!("{:?}", pairs);
+
     pairs.for_each(|row| match row.as_rule() {
         Rule::event_name => {
-            if event_count == 0 {
-            } else {
+            if event_count != 0 {
                 event.insert("comment".to_string(), comment.clone());
-                event.insert(event_name.clone(), keycode_list.clone());
+                if event_count == 1 {
+                    // To put Forward after the comment
+                    event.insert(event_name.clone(), keycode_list.clone());
+                }
                 keycode_list = vec![];
             }
 
@@ -69,7 +73,12 @@ fn parse_ctrlmap(pairs: Pairs<Rule>) -> String {
             event_count += 1;
         }
         Rule::comment => comment.push(row.as_str()),
-        Rule::keycode => keycode_list.push(row.as_str()),
+        Rule::keycode => {
+            keycode_list.push(row.as_str());
+            if event_count > 1 {
+                event.insert(event_name.clone(), keycode_list.clone());
+            }
+        }
         Rule::blank_line => {
             events.insert(ctrlmap_category[index], event.clone());
 
