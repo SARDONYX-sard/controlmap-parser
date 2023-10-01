@@ -65,6 +65,7 @@ use nom::{
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
+/// KeyMap Kind
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum KeyID<'a> {
@@ -74,6 +75,7 @@ pub enum KeyID<'a> {
     Alias(&'a str),
 }
 
+/// One line event
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct EventLine<'a> {
@@ -87,6 +89,7 @@ pub struct EventLine<'a> {
     pub event_binary_flag: Option<&'a str>,
 }
 
+/// A line expression
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Line<'a> {

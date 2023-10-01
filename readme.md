@@ -1,50 +1,75 @@
 # ControlMap Parser Library
 
-English | [日本語](docs/i18n/jp/readme.md)
-
-![controlmap sample](./docs/sample-code.png)
+The controlmap.txt parser for Skyrim.
 
 ## Table of Contents
 
 - [ControlMap Parser Library](#controlmap-parser-library)
   - [Table of Contents](#table-of-contents)
-  - [Abstract](#abstract)
-  - [Requirements](#requirements)
-  - [Getting Started](#getting-started)
-  - [Known Issues](#known-issues)
+  - [features](#features)
+- [Examples](#examples)
   - [License](#license)
 
-## Abstract
+## features
 
-This is the controlmap.txt parser for Skyrim.
+- [x] controlmap.txt => json
+- [ ] json => controlmap.txt
 
-controlmap.txt => json file
+# Examples
 
-## Requirements
+```rust
+use pretty_assertions::assert_eq;
+use controlmap_parser::{control_map_parser, EventLine, Line, KeyID};
 
-- git
-- Rust
+let input = r#"
+// Main Gameplay
+Forward				0x11		0xff	0xff			1	1	0	0x801
+Back				0x1f		0xff	0xff			1	1	0	0x801
+// Menu Mode
+Accept		!0,Activate	0xff	0x2000	0	0	0	0x8
+"#;
+let actual = control_map_parser(input);
 
-## Getting Started
-
-```bash
-git clone https://github.com/SARDONYX-sard/controlmap-parser;
-cd controlmap-parser;
-
-make; # sample controlmap.txt to result.json
-# or
-make controlmap; # controlmap.txt to stdout (show display)
-
-# or manual
-cargo run --example controlmap-parser <your controlmap.txt file path>;
+let expected = Ok((
+    "",
+    vec![
+        Line::BlankLine,
+        Line::Comment(" Main Gameplay"),
+        Line::EventLine(EventLine {
+            event_name: "Forward",
+            keyboard_id: KeyID::One("0x11"),
+            mouse_id: KeyID::One("0xff"),
+            gamepad_id: KeyID::One("0xff"),
+            remap_key: true,
+            remap_mouse: true,
+            remap_gamepad: false,
+            event_binary_flag: Some("0x801"),
+        }),
+        Line::EventLine(EventLine {
+            event_name: "Back",
+            keyboard_id: KeyID::One("0x1f"),
+            mouse_id: KeyID::One("0xff"),
+            gamepad_id: KeyID::One("0xff"),
+            remap_key: true,
+            remap_mouse: true,
+            remap_gamepad: false,
+            event_binary_flag: Some("0x801"),
+        }),
+        Line::Comment(" Menu Mode"),
+        Line::EventLine(EventLine {
+            event_name: "Accept",
+            keyboard_id: KeyID::Alias("Activate"),
+            mouse_id: KeyID::One("0xff"),
+            gamepad_id: KeyID::One("0x2000"),
+            remap_key: false,
+            remap_mouse: false,
+            remap_gamepad: false,
+            event_binary_flag: Some("0x8"),
+        }),
+    ],
+));
+assert_eq!(actual, expected);
 ```
-
-## Known Issues
-
-- I cannot successfully parse the comments between the event lines in
-  controlmap.txt. (They are grouped together as an array).
-
-- json => controlmap.txt not supported.
 
 ## License
 
