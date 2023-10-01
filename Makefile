@@ -1,17 +1,16 @@
-default: json
+default: run
 
-json:
-	cargo run --example controlmap-parser ./examples/controlmap_sample.txt > result.json
-
-controlmap:
-	cargo run --example controlmap-parser ./examples/controlmap_sample.txt
+run:
+	cargo run --example parse_to_json --features serde > result.json
 
 doc:
 	cargo doc --open
 
 test:
-	cargo run --example controlmap-parser ./test-files/controlmap_test.txt > test-files/expected.json
+	cargo test --features serde
 
 publish-test:
 	cargo publish --dry-run;
 	cargo package --list;
+
+.PHONY: run doc test publish-test

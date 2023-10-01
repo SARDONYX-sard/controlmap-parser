@@ -1,16 +1,4 @@
 {
-  "cSpell.words": [
-    "chumsky",
-    "controlmap",
-    "ctrlmap",
-    "foldl",
-    "foldr",
-    "Gameplay",
-    "indexmap",
-    "Licence",
-    "Lockpicking",
-    "rustup",
-    "Skyrim"
-  ],
-  "files.insertFinalNewline": false
+  "files.insertFinalNewline": false,
+  "rust-analyzer.cargo.features": ["serde"]
 }
