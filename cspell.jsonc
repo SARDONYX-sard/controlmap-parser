@@ -1,9 +1,18 @@
 {
   "words": [
+    "appender",
     "controlmap",
+    "Dpad",
     "EBNF",
     "gamepad",
     "Gameplay",
-    "Skyrim"
+    "Lockpicking",
+    "multispace",
+    "println",
+    "serde",
+    "Skyrim",
+    "Spacebar",
+    "Struct",
+    "thiserror"
   ]
 }
