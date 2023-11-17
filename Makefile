@@ -1,6 +1,6 @@
 default: run
 
-run:
+examples:
 	cargo run --example cast_and_fmt --features serde
 	cargo run --example parse_and_print --features serde
 	cargo run --example scan_code
