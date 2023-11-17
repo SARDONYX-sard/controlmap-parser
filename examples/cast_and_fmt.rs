@@ -1,36 +1,37 @@
-# ControlMap (De)Serializer Library
-
-The controlmap.txt parser for Skyrim.
-
-## Table of Contents
-
-- [ControlMap (De)Serializer Library](#controlmap-deserializer-library)
-  - [Table of Contents](#table-of-contents)
-  - [features](#features)
-- [Examples](#examples)
-  - [License](#license)
-
-## features
-
-- [x] `controlmap.txt` => `json`
-- [x] `json` => `controlmap.txt` (formatted with preserved comments)
-- [x] Analysis using enum scanCodes.
-
-# Examples
-
-- PreRequirements
-
-```toml
-[dependencies]
-controlmap_parser = "*"
-serde_json = "1.0" # Json converter
-```
-
-```rust
+use anyhow::Result;
 use controlmap_parser::ControlMap;
 
-type Result<T, E = Box<dyn std::error::Error + 'static>> = core::result::Result<T, E>;
 fn main() -> Result<()> {
+    let _guard = init_tracing()?;
+    cast_and_fmt().map_err(|err| {
+        tracing::error!("Error: {:?}", err);
+        err
+    })?;
+    Ok(())
+}
+
+/// color std::io::out & non color file out init logger
+fn init_tracing() -> Result<tracing_appender::non_blocking::WorkerGuard> {
+    use tracing_subscriber::{fmt, layer::SubscriberExt};
+    std::fs::create_dir_all("./log")?;
+    let (file_writer, guard) =
+        tracing_appender::non_blocking(std::fs::File::create("./log/cast_and_fmt.log")?);
+    tracing::subscriber::set_global_default(
+        fmt::Subscriber::builder()
+            .with_max_level(tracing::Level::TRACE)
+            .finish()
+            .with(
+                fmt::Layer::default()
+                    .with_writer(file_writer)
+                    .with_ansi(false),
+            ),
+    )
+    .expect("Unable to set global tracing subscriber");
+    tracing::debug!("Tracing initialized.");
+    Ok(guard)
+}
+
+fn cast_and_fmt() -> Result<()> {
     let input = r#"
 // Lockpicking
 RotatePick	0xff		0xa		0x000b	0	0	0	0x8
@@ -42,7 +43,7 @@ Cancel		0x0f		0xff	0x1000	0	0	0	0x8
 Cancel	0x0f	0xff	0x1000	0	0	0	0x108"#;
 
     let control_map = ControlMap::from_txt(input)?;
-    println!("txt => Struct:\n{:?}", &control_map);
+    tracing::debug!("txt => Struct:\n{:?}", &control_map);
 
     let json = serde_json::to_string_pretty(&control_map)?;
     let expected_json = r#"{
@@ -173,14 +174,3 @@ Cancel	0x0f	0xff	0x1000	0	0	0	0x108
 
     Ok(())
 }
-```
-
-```shell
-cargo run --example cast_and_fmt --features serde
-cargo run --example parse_and_print --features serde
-cargo run --example scan_code
-```
-
-## License
-
-[MIT](https://opensource.org/licenses/MIT)
