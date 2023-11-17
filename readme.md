@@ -6,11 +6,11 @@ The controlmap.txt parser for Skyrim.
 
 - [ControlMap (De)Serializer Library](#controlmap-deserializer-library)
   - [Table of Contents](#table-of-contents)
-  - [features](#features)
+  - [Features](#features)
 - [Examples](#examples)
   - [License](#license)
 
-## features
+## Features
 
 - [x] `controlmap.txt` => `json`
 - [x] `json` => `controlmap.txt` (formatted with preserved comments)
@@ -44,7 +44,8 @@ Cancel	0x0f	0xff	0x1000	0	0	0	0x108"#;
     let control_map = ControlMap::from_txt(input)?;
     println!("txt => Struct:\n{:?}", &control_map);
 
-    let json = serde_json::to_string_pretty(&control_map)?;
+
+    // txt => json
     let expected_json = r#"{
   "lines": [
     "BlankLine",
@@ -154,9 +155,12 @@ Cancel	0x0f	0xff	0x1000	0	0	0	0x108"#;
     }
   ]
 }"#;
+    let json = serde_json::to_string_pretty(&control_map)?;
+    println!("struct => json:\n{:?}", &control_map);
     assert_eq!(&json, expected_json);
 
-    let control_map: ControlMap = serde_json::from_str(&json)?;
+    let re_control_map: ControlMap = serde_json::from_str(&json)?;
+    println!("json => txt:\n{}", &re_control_map);
     // Yes, blank lines are not removed, they are applied as is.
     // There are places where it would be an error to do otherwise.
     let formatted_control_map = r#"
@@ -169,7 +173,7 @@ Cancel	0x0f	0xff	0x1000	0	0	0	0x8
 // Favor
 Cancel	0x0f	0xff	0x1000	0	0	0	0x108
 "#;
-    assert_eq!(control_map.to_string(), formatted_control_map);
+    assert_eq!(re_control_map.to_string(), formatted_control_map);
 
     Ok(())
 }
@@ -183,4 +187,5 @@ cargo run --example scan_code
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT) or
+[Apache 2.0](https://opensource.org/license/apache-2-0/)
