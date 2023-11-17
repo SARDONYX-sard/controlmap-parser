@@ -19,4 +19,4 @@ publish-test:
 	cargo publish --dry-run;
 	cargo package --list;
 
-.PHONY: run doc test publish-test
+.PHONY: examples doc lint-fix test publish-test
