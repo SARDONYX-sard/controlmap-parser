@@ -1,16 +1,12 @@
 {
-  "cSpell.words": [
-    "chumsky",
-    "controlmap",
-    "ctrlmap",
-    "foldl",
-    "foldr",
-    "Gameplay",
-    "indexmap",
-    "Licence",
-    "Lockpicking",
-    "rustup",
-    "Skyrim"
-  ],
-  "files.insertFinalNewline": false
+  "files.insertFinalNewline": false,
+  "rust-analyzer.cargo.features": ["serde"],
+  // "rust-analyzer.checkOnSave": false,
+  // "editor.formatOnSave": false
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/target/**": true
+  },
+  "rust-analyzer.check.command": "clippy"
 }

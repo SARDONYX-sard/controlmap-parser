@@ -1,2 +1,4 @@
+*.log
+/log
 /target
-result.json
+Cargo.lock
