@@ -1,4 +1,4 @@
-default: run
+default: examples
 
 examples:
 	cargo run --example cast_and_fmt --features serde
